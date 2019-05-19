@@ -19,17 +19,39 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
  * @param {number} target
  * @return {number[]}
  */
+
+// using a Map as a cache
 const twoSum = (nums, target) => {
+  const cache = new Map();
+
   for (let i = 0; i < nums.length; i++) {
-    for (let j = 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target && i !== j) {
-        return [i, j];
-      }
+    const value = nums[i];
+    const res = target - value;
+
+    if (cache.has(value)) {
+      return [cache.get(value), i];
     }
+
+    cache.set(res, i);
+  }
+};
+
+// using the object as a cache
+const twoSum = (nums, target) => {
+  const cache = {};
+  for (let i = 0; i < nums.length; i += 1) {
+    const value = nums[i];
+    const res = target - value;
+
+    if (cache[value] !== undefined) {
+      return [cache[value], i];
+    }
+
+    cache[res] = i;
   }
 };
 
 console.log(twoSum([2, 7, 11, 15], 9)); // [0,1]
-console.log(twoSum([3, 2, 4], 6)); // [1,2]
-console.log(twoSum([3, 3], 6));
-console.log(twoSum([2, 5, 5, 11], 10)); // [1,2]
+// console.log(twoSum([3, 2, 4], 6)); // [1,2]
+// console.log(twoSum([3, 3], 6));
+// console.log(twoSum([2, 5, 5, 11], 10)); // [1,2]

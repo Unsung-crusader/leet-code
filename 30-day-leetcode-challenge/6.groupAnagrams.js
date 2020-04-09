@@ -3,19 +3,19 @@
  */
 
 function groupAnagrams(strs) {
-  const anagramIdxBag = {};
+  const anagramBag = {};
   for (let i = 0; i < strs.length; i++) { 
     const splittedStr = strs[i].split('').sort().join('');
-    if (splittedStr in anagramIdxBag) {
-      anagramIdxBag[splittedStr].push(strs[i]);
+    if (splittedStr in anagramBag) {
+      anagramBag[splittedStr].push(strs[i]);
     } else { 
-      anagramIdxBag[splittedStr] = [strs[i]];
+      anagramBag[splittedStr] = [strs[i]];
     }
   }
-  
+
   const anagramsGroup = [];
-  for (let key in anagramIdxBag) {
-    anagramsGroup.push(anagramIdxBag[key]);
+  for (let key in anagramBag) {
+    anagramsGroup.push(anagramBag[key]);
   }
 
   return anagramsGroup

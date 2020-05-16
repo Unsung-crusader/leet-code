@@ -107,14 +107,22 @@ class MyLinkedList {
 function hasCycle(head) {
   if(!head || head.next === null) return false;
 
-  let slowPointer = fastPointer = head;
+  let slowPointer = head;
+  let fastPointer = slowPointer;
 
   while(true) {
     if(fastPointer === null) return false;
-    
+
+    /** we move the slowPointer by 1 unit */
     slowPointer = slowPointer.next;
+
+    /** and the fastPointer by 2 units */
     fastPointer = fastPointer.next.next;
     
+    /**
+     * if there is a cycle in the linked list,
+     * the two pointers are bound to meet at some point
+     */
     if(slowPointer === fastPointer) return true;
   }
 
@@ -130,7 +138,8 @@ function detectCycle(head) {
 
   if(!head || head.next === null) return noCycle;
 
-  let fastPointer = slowPointer = head;
+  let fastPointer = head;
+  let slowPointer = fastPointer;
 
   while(true) {
     if(!slowPointer.next) return noCycle;
@@ -177,6 +186,17 @@ function getIntersectionNode(headA, headB) {
     curr = curr.next;
   }
   return null;
+}
+
+/**
+ * @url https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1296/
+ */
+
+function removeNthFromEnd(head, n) {
+  let length = 0;
+  while(true) {
+    if ( )
+  }
 }
 
 const linkedList = new MyLinkedList();
